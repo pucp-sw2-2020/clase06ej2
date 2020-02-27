@@ -24,7 +24,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/redirectByRole", true);
 
         http.logout()
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/")
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true);
 
         http.authorizeRequests()
                 .antMatchers("/employee", "/employee/**").hasAnyAuthority("admin", "logistica")
